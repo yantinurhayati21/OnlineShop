@@ -1,0 +1,150 @@
+﻿﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Pesanan</title>
+    <style>
+        /* Style untuk body */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: darkturquoise;
+        }
+
+        /* Style untuk konten */
+        .container {
+            max-width: 95%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Style untuk judul */
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Style untuk tabel */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+            .table th,
+            .table td {
+                padding: 10px;
+                border: 1px solid #ddd;
+                background-color: #f2f2f2; /* Warna latar belakang header */
+            }
+
+            .table th {
+                color: #333;
+                text-align: left;
+            }
+
+        /* Style untuk formulir */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+            }
+
+        .btn-success {
+            background-color: #28a745;
+            color: #fff;
+            margin: 5px;
+        }
+
+            .btn-success:hover {
+                background-color: #218838;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        @model List<OnlineShop.Models.Order>
+
+        @{
+            ViewData["Title"] = "Daftar Pesanan";
+        }
+
+        <h1>Daftar Pesanan</h1>
+
+        <form asp-controller="Order" asp-action="Search" method="get" class="form-group">
+            <input type="text" class="form-control" name="searchString" placeholder="Cari Pesanan">
+            <button type="submit" class="btn btn-primary">Cari</button>
+        </form>
+
+        @if (Model.Any())
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Pelanggan</th>
+                        <th>Alamat</th>
+                        <th>Nomor Telepon</th>
+                        <th>Status</th>
+                        <th>Keterangan</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model)
+                    {
+                        <tr>
+                            <td>@order.Id</td>
+                            <td>@order.CustomerName</td>
+                            <td>@order.Address</td>
+                            <td>@order.PhoneNumber</td>
+                            <td>@order.Status</td>
+                            <td>
+                                <form asp-controller="Order" asp-action="Accept" method="post">
+                                    <input type="hidden" name="id" value="@order.Id" />
+                                    <button type="submit" class="btn btn-success">Terima Pesanan</button>
+                                </form>
+
+                            </td>
+                            <td><a href="/order/detail/@order.Id" class="btn btn-primary">Detail</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>Tidak ada pesanan yang tersedia.</p>
+        }
+    </div>
+</body>
+</html>

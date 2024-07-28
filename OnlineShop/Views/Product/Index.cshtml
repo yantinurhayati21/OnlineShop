@@ -1,0 +1,113 @@
+﻿﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightgray;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            padding: 20px;
+            border-radius: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+
+        .product-list-header {
+            text-align: center;
+            margin-bottom: 30px;
+            background-color: red: box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+            .product-list-header h2 {
+                color: #343a40;
+            }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            }
+
+        .card-img-top {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-title {
+            font-size: 1.2em;
+            color: #343a40;
+            margin-top: 10px;
+        }
+
+        .card-text {
+            color: #6c757d;
+        }
+
+        .btn-group {
+            margin-top: 10px;
+        }
+
+        .btn-outline-secondary {
+            color: #6c757d;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border: none;
+        }
+
+            .btn-danger:hover {
+                background-color: #c82333;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="product-list-header">
+            <h2>Daftar Produk</h2>
+        </div>
+
+        <div class="row">
+            @foreach (var product in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="@Url.Content("~/images/" + product.Image)" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">@product.Name</h5>
+                            <p class="card-text">@product.Description</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Harga: Rp @product.Price</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Stok: @product.Stok</button>
+                                </div>
+                                <a href="/order/create/@product.Id" class="btn btn-danger">Pesan</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>

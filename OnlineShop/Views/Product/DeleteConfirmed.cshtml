@@ -1,0 +1,64 @@
+﻿﻿@{
+    ViewData["Title"] = "Delete Confirmed";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - OnlineShop</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<style>
+    /* Site-wide CSS */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa; /* Background color for the body */
+    }
+
+    .container {
+        margin-top: 50px; /* Margin from the top */
+    }
+
+    /* Delete Confirmed CSS */
+    .delete-confirmed {
+        background-color: #fff; /* Background color for the delete confirmed section */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle depth effect */
+    }
+
+        .delete-confirmed h2 {
+            color: #007bff; /* Heading color */
+        }
+
+        .delete-confirmed p {
+            color: #333; /* Paragraph color */
+            margin-bottom: 20px; /* Bottom margin for the paragraph */
+        }
+
+        .delete-confirmed .btn-primary {
+            background-color: #007bff; /* Button background color */
+            border-color: #007bff; /* Button border color */
+        }
+
+            .delete-confirmed .btn-primary:hover {
+                background-color: #0056b3; /* Button background color on hover */
+                border-color: #0056b3; /* Button border color on hover */
+            }
+
+</style>
+<body>
+    <div class="container">
+        <div class="delete-confirmed">
+            <h2>Delete Confirmed</h2>
+            <p>Your product has been successfully deleted.</p>
+            <div>
+                <a asp-controller="Product" asp-action="ListProducts" class="btn btn-primary">Back to Products</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
